@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ include "echoservice.fullname" . }}
+  labels:
+    {{- include "echoservice.labels" . | nindent 4 }}
+spec:
+  hosts:
+  {{- range $host := .Values.gateway.hosts }}
+  - {{ $host }}
+  {{- end }}
+  gateways:
+  - {{ include "echoservice.fullname" . }}
+  http:
+  - match:
+    - uri:
+        prefix: /{{ .Release.Namespace }}
+    route:
+    - destination:
+        host: {{ include "echoservice.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+        port:
+          number: {{ .Values.service.port }}
