@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: k8s.gcr.io/e2e-test-images/echoserver:2.5
+  repository: k8s.gcr.io/e2e-test-images/echoserver
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  # tag: 1.0.0-dev
+  tag: 2.5
 
 #prefix: "/echoservice"
 
