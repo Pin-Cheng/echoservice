@@ -55,19 +55,6 @@ spec:
             periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          # volumeMounts:
-          # - name: config
-          #   mountPath: "/app/resources/application.yml"
-          #   subPath: "application.yml"
-          #   readOnly: true
-          # - name: config
-          #   mountPath: "/app/resources/bootstrap.yml"
-          #   subPath: "bootstrap.yml"
-          #   readOnly: true
-          # - name: google-services
-          #   mountPath: "/app/resources/google-services.json"
-          #   subPath: "google-services.json"
-
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -80,18 +67,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      # volumes:
-      # - name: config
-      #   configMap:
-      #     name: {{ include "echoservice.fullname" . }}
-      #     items:
-      #     - key: "application.yml"
-      #       path: "application.yml"
-      #     # - key: "bootstrap.yml"
-      #     #   path: "bootstrap.yml"
-      # - name: google-services
-      #   secret:
-      #     secretName: google-services
-      #     items:
-      #     - key: "google-services.json"
-      #       path: "google-services.json"
