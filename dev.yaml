@@ -60,11 +60,11 @@ deployment:
   protocol: TCP
   port: 80
   livenessProbe:
-    enabled: true
+    enabled: false
     httpGet:
       path: /up
   readinessProbe:
-    enabled: true
+    enabled: false
     httpGet:
       path: /up
 
