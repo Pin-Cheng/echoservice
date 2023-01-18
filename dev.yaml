@@ -53,7 +53,7 @@ service:
 
 gateway:
   hosts:
-  - echoserver.novaverse.one
+  - demo.pinlab.fun
 
 deployment:
   protocol: TCP
