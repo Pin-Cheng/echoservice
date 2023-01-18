@@ -5,10 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: k8s.gcr.io/e2e-test-images/echoserver
+#   repository: k8s.gcr.io/e2e-test-images/echoserver
+  repository: alexwhen/docker-2048
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 2.5
+  tag: latest
 
 #prefix: "/echoservice"
 
@@ -57,7 +58,7 @@ gateway:
 
 deployment:
   protocol: TCP
-  port: 8080
+  port: 80
   livenessProbe:
     enabled: true
     httpGet:
@@ -74,10 +75,10 @@ resources:
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
     cpu: 250m
-    memory: 2.5Gi
+    memory: 1Gi
   requests:
     cpu: 250m
-    memory: 2.5Gi
+    memory: 1Gi
 
 autoscaling:
   enabled: false
