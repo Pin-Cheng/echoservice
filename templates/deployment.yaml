@@ -37,19 +37,19 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.deployment.port }}
+              containerPort: {{ .Values.container.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /{{ .Release.Namespace }}{{ .Values.deployment.readinessProbe.httpGet.path }}
-              port: {{ .Values.deployment.port }}
+              path: /{{ .Release.Namespace }}/up
+              port: http
             initialDelaySeconds: 30
             failureThreshold: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: /{{ .Release.Namespace }}{{ .Values.deployment.readinessProbe.httpGet.path }}
-              port: {{ .Values.deployment.port }}
+              path: /{{ .Release.Namespace }}/up
+              port: http
             initialDelaySeconds: 30
             failureThreshold: 30
             periodSeconds: 10
