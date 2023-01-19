@@ -60,13 +60,13 @@ deployment:
   protocol: TCP
   port: 80
   livenessProbe:
-    enabled: false
+    enabled: true
     httpGet:
-      path: /up
+      path: /
   readinessProbe:
-    enabled: false
+    enabled: true
     httpGet:
-      path: /up
+      path: /
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
