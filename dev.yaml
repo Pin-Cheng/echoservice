@@ -6,10 +6,10 @@ replicaCount: 2
 
 image:
 #   repository: k8s.gcr.io/e2e-test-images/echoserver
-  repository: alexwhen/docker-2048
+  repository: gcr.io/fifth-audio-367507/docker-2048
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: v1.0
 
 #prefix: "/echoservice"
 
