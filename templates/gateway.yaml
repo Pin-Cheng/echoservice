@@ -1,9 +1,9 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: {{ include "echoservice.fullname" . }}
+  name: {{ include "demo-service.fullname" . }}
   labels:
-    {{- include "echoservice.labels" . | nindent 4 }}
+    {{- include "demo-service.labels" . | nindent 4 }}
 spec:
   selector:
     istio: ingressgateway

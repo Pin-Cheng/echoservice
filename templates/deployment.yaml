@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "echoservice.fullname" . }}
+  name: {{ include "demo-service.fullname" . }}
   labels:
-    {{- include "echoservice.labels" . | nindent 4 }}
+    {{- include "demo-service.labels" . | nindent 4 }}
 spec:
   strategy:
     type: RollingUpdate
@@ -12,7 +12,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "echoservice.selectorLabels" . | nindent 6 }}
+      {{- include "demo-service.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -20,13 +20,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "echoservice.selectorLabels" . | nindent 8 }}
+        {{- include "demo-service.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "echoservice.serviceAccountName" . }}
+      serviceAccountName: {{ include "demo-service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -39,20 +39,20 @@ spec:
             - name: http
               containerPort: {{ .Values.container.port }}
               protocol: TCP
-#           livenessProbe:
-#             httpGet:
-#               path: /{{ .Release.Namespace }}/up
-#               port: http
-#             initialDelaySeconds: 30
-#             failureThreshold: 30
-#             periodSeconds: 10
-#           readinessProbe:
-#             httpGet:
-#               path: /{{ .Release.Namespace }}/up
-#               port: http
-#             initialDelaySeconds: 30
-#             failureThreshold: 30
-#             periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /{{ .Release.Namespace }}/up
+              port: http
+            initialDelaySeconds: 30
+            failureThreshold: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /{{ .Release.Namespace }}/up
+              port: http
+            initialDelaySeconds: 30
+            failureThreshold: 30
+            periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
