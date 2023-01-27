@@ -13,9 +13,9 @@ image:
 
 #prefix: "/echoservice"
 
-# imagePullSecrets: [
-#   {"name": "gcr-json-key"}
-# ]
+imagePullSecrets: [
+  {"name": "gcr-key"}
+]
 
 # imagePullSecrets: 
 #   - name: gcr-json-key-dev
