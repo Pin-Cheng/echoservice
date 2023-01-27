@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: demo-service.image.name
+    value: gcr.io/fifth-audio-367507/docker-2048
+    forcestring: true
+  - name: image.tag
+    value: v1.1
+    forcestring: true
